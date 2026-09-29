@@ -9,22 +9,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
+  <a href="#contenido" class="saltar-enlace">Saltar al contenido principal</a>
 
-  <div class="barra-aviso">
-    🚚 <strong>Envío gratis</strong> en compras mayores a $50 en todo El Salvador
-  </div>
-
+  <!-- Encabezado del sitio: aviso, logo y menú de navegación -->
   <header class="encabezado">
-    <div class="contenedor">
-      <a href="index.html" class="logo">SIMAN<span>.</span></a>
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="menu-icono" aria-label="Abrir menú">☰</label>
-      <nav class="nav">
+    <p class="barra-aviso">
+      <span aria-hidden="true">🚚</span> <strong>Envío gratis</strong> en compras mayores a $50 en todo El Salvador
+    </p>
+    <div class="contenedor encabezado-contenido">
+      <a href="index.html" class="logo" aria-label="Siman, ir al inicio">SIMAN<span aria-hidden="true">.</span></a>
+      <button type="button" class="menu-boton" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+        <span aria-hidden="true">☰</span>
+      </button>
+      <nav class="nav" id="menu-principal" aria-label="Menú principal">
         <ul>
           <li><a href="index.html">Inicio</a></li>
-          <li><a href="promociones.html" class="activo">Promociones</a></li>
+          <li><a href="promociones.html" aria-current="page">Promociones</a></li>
           <li><a href="eventos.html">Eventos</a></li>
           <li><a href="index.html#suscripcion">Suscríbete</a></li>
         </ul>
@@ -32,124 +35,126 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero-interno">
+  <!-- Contenido principal -->
+  <main id="contenido">
+    <header class="hero-interno">
       <div class="contenedor">
         <h1>Promociones del mes</h1>
         <p>Descubre todas las ofertas vigentes en nuestras tiendas y en línea. ¡Aprovecha antes de que se agoten!</p>
       </div>
-    </section>
+    </header>
 
-    <section class="seccion">
+    <section class="seccion" aria-labelledby="titulo-promos">
       <div class="contenedor">
-        <div class="filtros">
+        <h2 id="titulo-promos" class="solo-lector">Promociones vigentes</h2>
+        <nav class="filtros" aria-label="Categorías de promociones">
           <a href="#promos">Todas</a>
           <a href="#promos">Moda</a>
           <a href="#promos">Tecnología</a>
           <a href="#promos">Hogar</a>
           <a href="#promos">Belleza</a>
           <a href="#promos">Deportes</a>
-        </div>
+        </nav>
         <div class="grid-promos" id="promos">
           <article class="promo">
             <div class="promo-imagen">
-              <img src="img/moda.svg" alt="Ropa de temporada">
-              <span class="descuento">-40%</span>
+              <img src="img/moda.svg" alt="Ropa de temporada" width="400" height="260" loading="lazy">
+              <p class="descuento">-40%</p>
             </div>
             <div class="promo-cuerpo">
               <h3>Moda de temporada</h3>
               <p>Blusas, camisas y pantalones de marcas seleccionadas para dama y caballero.</p>
-              <div class="precios">
-                <span class="precio-antes">$49.99</span>
-                <span class="precio-ahora">$29.99</span>
-              </div>
-              <span class="vigencia">Válido hasta el 31 de octubre</span>
+              <p class="precios">
+                <del class="precio-antes"><span class="solo-lector">Antes: </span>$49.99</del>
+                <strong class="precio-ahora"><span class="solo-lector">Ahora: </span>$29.99</strong>
+              </p>
+              <p class="vigencia">Válido hasta el <time datetime="2026-10-31">31 de octubre</time></p>
             </div>
           </article>
           <article class="promo">
             <div class="promo-imagen">
-              <img src="img/tecnologia.svg" alt="Laptop en oferta">
-              <span class="descuento">-25%</span>
+              <img src="img/tecnologia.svg" alt="Laptop en oferta" width="400" height="260" loading="lazy">
+              <p class="descuento">-25%</p>
             </div>
             <div class="promo-cuerpo">
               <h3>Laptops y tablets</h3>
               <p>Equipos de las mejores marcas con hasta 12 cuotas sin intereses.</p>
-              <div class="precios">
-                <span class="precio-antes">$799.00</span>
-                <span class="precio-ahora">$599.00</span>
-              </div>
-              <span class="vigencia">Válido hasta el 15 de noviembre</span>
+              <p class="precios">
+                <del class="precio-antes"><span class="solo-lector">Antes: </span>$799.00</del>
+                <strong class="precio-ahora"><span class="solo-lector">Ahora: </span>$599.00</strong>
+              </p>
+              <p class="vigencia">Válido hasta el <time datetime="2026-11-15">15 de noviembre</time></p>
             </div>
           </article>
           <article class="promo">
             <div class="promo-imagen">
-              <img src="img/hogar.svg" alt="Artículos para el hogar">
-              <span class="descuento">-30%</span>
+              <img src="img/hogar.svg" alt="Artículos para el hogar" width="400" height="260" loading="lazy">
+              <p class="descuento">-30%</p>
             </div>
             <div class="promo-cuerpo">
               <h3>Hogar y decoración</h3>
               <p>Sábanas, cortinas, vajillas y electrodomésticos para renovar tu casa.</p>
-              <div class="precios">
-                <span class="precio-antes">$120.00</span>
-                <span class="precio-ahora">$84.00</span>
-              </div>
-              <span class="vigencia">Válido hasta el 31 de octubre</span>
+              <p class="precios">
+                <del class="precio-antes"><span class="solo-lector">Antes: </span>$120.00</del>
+                <strong class="precio-ahora"><span class="solo-lector">Ahora: </span>$84.00</strong>
+              </p>
+              <p class="vigencia">Válido hasta el <time datetime="2026-10-31">31 de octubre</time></p>
             </div>
           </article>
           <article class="promo">
             <div class="promo-imagen">
-              <img src="img/belleza.svg" alt="Productos de belleza">
-              <span class="descuento">-20%</span>
+              <img src="img/belleza.svg" alt="Productos de belleza" width="400" height="260" loading="lazy">
+              <p class="descuento">-20%</p>
             </div>
             <div class="promo-cuerpo">
               <h3>Belleza y fragancias</h3>
               <p>Perfumes, maquillaje y cuidado de la piel. Llévate un regalo por tu compra.</p>
-              <div class="precios">
-                <span class="precio-antes">$65.00</span>
-                <span class="precio-ahora">$52.00</span>
-              </div>
-              <span class="vigencia">Válido hasta el 30 de noviembre</span>
+              <p class="precios">
+                <del class="precio-antes"><span class="solo-lector">Antes: </span>$65.00</del>
+                <strong class="precio-ahora"><span class="solo-lector">Ahora: </span>$52.00</strong>
+              </p>
+              <p class="vigencia">Válido hasta el <time datetime="2026-11-30">30 de noviembre</time></p>
             </div>
           </article>
           <article class="promo">
             <div class="promo-imagen">
-              <img src="img/deportes.svg" alt="Artículos deportivos">
-              <span class="descuento">-35%</span>
+              <img src="img/deportes.svg" alt="Artículos deportivos" width="400" height="260" loading="lazy">
+              <p class="descuento">-35%</p>
             </div>
             <div class="promo-cuerpo">
               <h3>Deportes</h3>
               <p>Calzado deportivo, ropa y accesorios para entrenar con estilo.</p>
-              <div class="precios">
-                <span class="precio-antes">$89.99</span>
-                <span class="precio-ahora">$58.49</span>
-              </div>
-              <span class="vigencia">Válido hasta el 15 de noviembre</span>
+              <p class="precios">
+                <del class="precio-antes"><span class="solo-lector">Antes: </span>$89.99</del>
+                <strong class="precio-ahora"><span class="solo-lector">Ahora: </span>$58.49</strong>
+              </p>
+              <p class="vigencia">Válido hasta el <time datetime="2026-11-15">15 de noviembre</time></p>
             </div>
           </article>
           <article class="promo">
             <div class="promo-imagen">
-              <img src="img/ninos.svg" alt="Ropa y juguetes para niños">
-              <span class="descuento">2x1</span>
+              <img src="img/ninos.svg" alt="Ropa y juguetes para niños" width="400" height="260" loading="lazy">
+              <p class="descuento">2x1</p>
             </div>
             <div class="promo-cuerpo">
               <h3>Niños</h3>
               <p>Ropa infantil y juguetes seleccionados en promoción 2x1.</p>
-              <div class="precios">
-                <span class="precio-antes">$24.99</span>
-                <span class="precio-ahora">$12.50</span>
-              </div>
-              <span class="vigencia">Válido hasta el 31 de octubre</span>
+              <p class="precios">
+                <del class="precio-antes"><span class="solo-lector">Antes: </span>$24.99</del>
+                <strong class="precio-ahora"><span class="solo-lector">Ahora: </span>$12.50</strong>
+              </p>
+              <p class="vigencia">Válido hasta el <time datetime="2026-10-31">31 de octubre</time></p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="seccion">
+    <section class="seccion" aria-labelledby="titulo-banner">
       <div class="contenedor">
         <div class="banner">
           <div>
-            <h2>¿No quieres perderte ninguna oferta?</h2>
+            <h2 id="titulo-banner">¿No quieres perderte ninguna oferta?</h2>
             <p>Suscríbete y recibe las promociones directamente en tu correo.</p>
           </div>
           <a href="index.html#suscripcion" class="btn btn-dorado">Suscribirme</a>
@@ -158,34 +163,35 @@
     </section>
   </main>
 
-
+  <!-- Pie de página -->
   <footer class="pie">
     <div class="contenedor">
       <div class="pie-grid">
-        <div>
-          <a href="index.html" class="logo">SIMAN<span>.</span></a>
+        <section aria-label="Acerca de Siman">
+          <a href="index.html" class="logo" aria-label="Siman, ir al inicio">SIMAN<span aria-hidden="true">.</span></a>
           <p>Tu tienda por departamentos en El Salvador. Encuentra moda, tecnología y hogar al mejor precio.</p>
-        </div>
-        <div>
-          <h4>Navegación</h4>
+        </section>
+        <nav aria-labelledby="titulo-pie-nav">
+          <h2 id="titulo-pie-nav">Navegación</h2>
           <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="promociones.html">Promociones</a></li>
+            <li><a href="promociones.html" aria-current="page">Promociones</a></li>
             <li><a href="eventos.html">Eventos</a></li>
           </ul>
-        </div>
-        <div>
-          <h4>Contacto</h4>
-          <ul>
-            <li>📍 San Salvador, El Salvador</li>
-            <li>📞 2250-0000</li>
-            <li>✉️ servicio@siman.com</li>
-          </ul>
-        </div>
+        </nav>
+        <section aria-labelledby="titulo-pie-contacto">
+          <h2 id="titulo-pie-contacto">Contacto</h2>
+          <address>
+            <ul>
+              <li><span aria-hidden="true">📍</span> San Salvador, El Salvador</li>
+              <li><span aria-hidden="true">📞</span> <a href="tel:+50322500000">2250&#8209;0000</a></li>
+              <li><span aria-hidden="true">✉️</span> <a href="mailto:servicio@siman.com">servicio@siman.com</a></li>
+            </ul>
+          </address>
+        </section>
       </div>
-      <p class="pie-copy">© 2026 Landing de promociones Siman — Proyecto académico.</p>
+      <p class="pie-copy"><small>© <time datetime="2026">2026</time> Landing de promociones Siman — Proyecto académico.</small></p>
     </div>
   </footer>
-
 </body>
 </html>

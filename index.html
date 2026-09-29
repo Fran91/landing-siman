@@ -9,21 +9,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
+  <a href="#contenido" class="saltar-enlace">Saltar al contenido principal</a>
 
-  <div class="barra-aviso">
-    🚚 <strong>Envío gratis</strong> en compras mayores a $50 en todo El Salvador
-  </div>
-
+  <!-- Encabezado del sitio: aviso, logo y menú de navegación -->
   <header class="encabezado">
-    <div class="contenedor">
-      <a href="index.html" class="logo">SIMAN<span>.</span></a>
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="menu-icono" aria-label="Abrir menú">☰</label>
-      <nav class="nav">
+    <p class="barra-aviso">
+      <span aria-hidden="true">🚚</span> <strong>Envío gratis</strong> en compras mayores a $50 en todo El Salvador
+    </p>
+    <div class="contenedor encabezado-contenido">
+      <a href="index.html" class="logo" aria-label="Siman, ir al inicio">SIMAN<span aria-hidden="true">.</span></a>
+      <button type="button" class="menu-boton" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+        <span aria-hidden="true">☰</span>
+      </button>
+      <nav class="nav" id="menu-principal" aria-label="Menú principal">
         <ul>
-          <li><a href="index.html" class="activo">Inicio</a></li>
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
           <li><a href="promociones.html">Promociones</a></li>
           <li><a href="eventos.html">Eventos</a></li>
           <li><a href="#suscripcion">Suscríbete</a></li>
@@ -32,120 +35,117 @@
     </div>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
+  <!-- Contenido principal -->
+  <main id="contenido">
+    <section class="hero" aria-labelledby="titulo-hero">
       <div class="contenedor">
         <div class="hero-texto">
-          <span class="etiqueta">Temporada de ofertas</span>
-          <h1>Descuentos de <em>hasta 50%</em> en tus marcas favoritas</h1>
+          <p class="etiqueta">Temporada de ofertas</p>
+          <h1 id="titulo-hero">Descuentos de <em>hasta 50%</em> en tus marcas favoritas</h1>
           <p>Moda, tecnología, hogar y belleza con precios especiales en todas nuestras tiendas de El Salvador y en línea.</p>
           <div class="hero-botones">
             <a href="promociones.html" class="btn">Ver promociones</a>
             <a href="eventos.html" class="btn btn-secundario">Próximos eventos</a>
           </div>
         </div>
-        <div class="hero-imagen">
-          <img src="img/hero.svg" alt="Bolsas de compras con etiqueta de hasta 50% de descuento">
-        </div>
+        <figure class="hero-imagen">
+          <img src="img/hero.svg" alt="Bolsas de compras con etiqueta de hasta 50% de descuento" width="600" height="480">
+        </figure>
       </div>
     </section>
 
-    <!-- Beneficios -->
-    <section class="seccion">
+    <section class="seccion" aria-labelledby="titulo-beneficios">
       <div class="contenedor">
-        <div class="titulo-seccion">
-          <h2>¿Por qué comprar en Siman?</h2>
+        <header class="titulo-seccion">
+          <h2 id="titulo-beneficios">¿Por qué comprar en Siman?</h2>
           <p>Beneficios pensados para ti</p>
-        </div>
-        <div class="beneficios">
-          <div class="beneficio">
-            <div class="icono">💳</div>
+        </header>
+        <ul class="beneficios">
+          <li class="beneficio">
+            <span class="icono" aria-hidden="true">💳</span>
             <h3>Cuotas sin intereses</h3>
             <p>Hasta 12 meses con tarjetas participantes.</p>
-          </div>
-          <div class="beneficio">
-            <div class="icono">🚚</div>
+          </li>
+          <li class="beneficio">
+            <span class="icono" aria-hidden="true">🚚</span>
             <h3>Envío gratis</h3>
             <p>En compras mayores a $50.</p>
-          </div>
-          <div class="beneficio">
-            <div class="icono">🏬</div>
+          </li>
+          <li class="beneficio">
+            <span class="icono" aria-hidden="true">🏬</span>
             <h3>Recoge en tienda</h3>
             <p>Compra en línea y retira sin costo.</p>
-          </div>
-          <div class="beneficio">
-            <div class="icono">🔄</div>
+          </li>
+          <li class="beneficio">
+            <span class="icono" aria-hidden="true">🔄</span>
             <h3>Cambios fáciles</h3>
             <p>Hasta 30 días para cambios.</p>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <!-- Promociones destacadas -->
-    <section class="seccion seccion-oscura">
+    <section class="seccion seccion-oscura" aria-labelledby="titulo-destacadas">
       <div class="contenedor">
-        <div class="titulo-seccion">
-          <h2>Promociones destacadas</h2>
+        <header class="titulo-seccion">
+          <h2 id="titulo-destacadas">Promociones destacadas</h2>
           <p>Ofertas por tiempo limitado</p>
-        </div>
+        </header>
         <div class="grid-promos">
           <article class="promo">
             <div class="promo-imagen">
-              <img src="img/moda.svg" alt="Ropa de temporada">
-              <span class="descuento">-40%</span>
+              <img src="img/moda.svg" alt="Ropa de temporada" width="400" height="260" loading="lazy">
+              <p class="descuento">-40%</p>
             </div>
             <div class="promo-cuerpo">
               <h3>Moda de temporada</h3>
               <p>Ropa para dama y caballero en marcas seleccionadas.</p>
-              <div class="precios">
-                <span class="precio-antes">$49.99</span>
-                <span class="precio-ahora">$29.99</span>
-              </div>
+              <p class="precios">
+                <del class="precio-antes"><span class="solo-lector">Antes: </span>$49.99</del>
+                <strong class="precio-ahora"><span class="solo-lector">Ahora: </span>$29.99</strong>
+              </p>
             </div>
           </article>
           <article class="promo">
             <div class="promo-imagen">
-              <img src="img/tecnologia.svg" alt="Laptop en oferta">
-              <span class="descuento">-25%</span>
+              <img src="img/tecnologia.svg" alt="Laptop en oferta" width="400" height="260" loading="lazy">
+              <p class="descuento">-25%</p>
             </div>
             <div class="promo-cuerpo">
               <h3>Tecnología</h3>
               <p>Laptops, smartphones y accesorios con precio especial.</p>
-              <div class="precios">
-                <span class="precio-antes">$799.00</span>
-                <span class="precio-ahora">$599.00</span>
-              </div>
+              <p class="precios">
+                <del class="precio-antes"><span class="solo-lector">Antes: </span>$799.00</del>
+                <strong class="precio-ahora"><span class="solo-lector">Ahora: </span>$599.00</strong>
+              </p>
             </div>
           </article>
           <article class="promo">
             <div class="promo-imagen">
-              <img src="img/hogar.svg" alt="Artículos para el hogar">
-              <span class="descuento">-30%</span>
+              <img src="img/hogar.svg" alt="Artículos para el hogar" width="400" height="260" loading="lazy">
+              <p class="descuento">-30%</p>
             </div>
             <div class="promo-cuerpo">
               <h3>Hogar</h3>
               <p>Decoración, blancos y electrodomésticos para tu casa.</p>
-              <div class="precios">
-                <span class="precio-antes">$120.00</span>
-                <span class="precio-ahora">$84.00</span>
-              </div>
+              <p class="precios">
+                <del class="precio-antes"><span class="solo-lector">Antes: </span>$120.00</del>
+                <strong class="precio-ahora"><span class="solo-lector">Ahora: </span>$84.00</strong>
+              </p>
             </div>
           </article>
         </div>
-        <div class="centrado">
+        <p class="centrado">
           <a href="promociones.html" class="btn btn-dorado">Ver todas las promociones</a>
-        </div>
+        </p>
       </div>
     </section>
 
-    <!-- Banner evento -->
-    <section class="seccion">
+    <section class="seccion" aria-labelledby="titulo-banner">
       <div class="contenedor">
         <div class="banner">
           <div>
-            <h2>Noche Siman: descuentos exclusivos</h2>
+            <h2 id="titulo-banner">Noche Siman: descuentos exclusivos</h2>
             <p>Un evento especial con precios que solo verás una noche. ¡No te lo pierdas!</p>
           </div>
           <a href="eventos.html" class="btn btn-dorado">Conoce los eventos</a>
@@ -153,14 +153,13 @@
       </div>
     </section>
 
-    <!-- Suscripción -->
-    <section class="seccion suscripcion" id="suscripcion">
+    <section class="seccion suscripcion" id="suscripcion" aria-labelledby="titulo-suscripcion">
       <div class="contenedor">
-        <div>
-          <span class="etiqueta">Newsletter</span>
-          <h2>Suscríbete y recibe ofertas antes que nadie</h2>
+        <header>
+          <p class="etiqueta">Newsletter</p>
+          <h2 id="titulo-suscripcion">Suscríbete y recibe ofertas antes que nadie</h2>
           <p>Recibe en tu correo promociones exclusivas, cupones de descuento y la fecha de nuestros próximos eventos.</p>
-        </div>
+        </header>
         <form class="formulario" id="form-suscripcion" novalidate>
           <div class="campo">
             <label for="nombre">Nombre completo</label>
@@ -203,152 +202,35 @@
     </section>
   </main>
 
+  <!-- Pie de página -->
   <footer class="pie">
     <div class="contenedor">
       <div class="pie-grid">
-        <div>
-          <a href="index.html" class="logo">SIMAN<span>.</span></a>
+        <section aria-label="Acerca de Siman">
+          <a href="index.html" class="logo" aria-label="Siman, ir al inicio">SIMAN<span aria-hidden="true">.</span></a>
           <p>Tu tienda por departamentos en El Salvador. Encuentra moda, tecnología y hogar al mejor precio.</p>
-        </div>
-        <div>
-          <h4>Navegación</h4>
+        </section>
+        <nav aria-labelledby="titulo-pie-nav">
+          <h2 id="titulo-pie-nav">Navegación</h2>
           <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html" aria-current="page">Inicio</a></li>
             <li><a href="promociones.html">Promociones</a></li>
             <li><a href="eventos.html">Eventos</a></li>
           </ul>
-        </div>
-        <div>
-          <h4>Contacto</h4>
-          <ul>
-            <li>📍 San Salvador, El Salvador</li>
-            <li>📞 2250-0000</li>
-            <li>✉️ servicio@siman.com</li>
-          </ul>
-        </div>
+        </nav>
+        <section aria-labelledby="titulo-pie-contacto">
+          <h2 id="titulo-pie-contacto">Contacto</h2>
+          <address>
+            <ul>
+              <li><span aria-hidden="true">📍</span> San Salvador, El Salvador</li>
+              <li><span aria-hidden="true">📞</span> <a href="tel:+50322500000">2250&#8209;0000</a></li>
+              <li><span aria-hidden="true">✉️</span> <a href="mailto:servicio@siman.com">servicio@siman.com</a></li>
+            </ul>
+          </address>
+        </section>
       </div>
-      <p class="pie-copy">© 2026 Landing de promociones Siman — Proyecto académico.</p>
+      <p class="pie-copy"><small>© <time datetime="2026">2026</time> Landing de promociones Siman — Proyecto académico.</small></p>
     </div>
   </footer>
-
-  <script>
-    // Validación del formulario de suscripción con la API de validación nativa de HTML5
-    const formulario = document.querySelector("#form-suscripcion");
-    const mensajeExito = document.querySelector("#mensaje-exito");
-
-    // Mensajes de error en español para cada campo
-    const mensajes = {
-      nombre: {
-        valueMissing: "Escribe tu nombre completo.",
-        tooShort: "El nombre debe tener al menos 3 caracteres.",
-        patternMismatch: "Escribe nombre y apellido, solo con letras."
-      },
-      correo: {
-        valueMissing: "Escribe tu correo electrónico.",
-        typeMismatch: "Escribe un correo válido, por ejemplo: nombre@correo.com.",
-        patternMismatch: "Escribe un correo válido, por ejemplo: nombre@correo.com."
-      },
-      interes: {
-        valueMissing: "Selecciona una categoría."
-      },
-      acepto: {
-        valueMissing: "Debes aceptar para poder suscribirte."
-      }
-    };
-
-    // Devuelve el mensaje del primer error encontrado en el campo
-    const obtenerError = (campo) => {
-      const errores = mensajes[campo.name] ?? {};
-      const tipo = Object.keys(errores).find((clave) => campo.validity[clave]);
-      return tipo ? errores[tipo] : "";
-    };
-
-    // Valida un campo y muestra u oculta su mensaje de error
-    const validarCampo = (campo) => {
-      const error = obtenerError(campo);
-      campo.setAttribute("aria-invalid", error ? "true" : "false");
-      document.querySelector(`#error-${campo.name}`).textContent = error;
-      return !error;
-    };
-
-    // Campos que solo aceptan letras y espacios (marcados con data-solo-texto)
-    const caracterNoPermitido = /[^\p{L}\s]/gu;
-
-    for (const campo of formulario.querySelectorAll("[data-solo-texto]")) {
-      // Bloquea números y símbolos antes de que se escriban
-      campo.addEventListener("beforeinput", (evento) => {
-        if (evento.data && new RegExp(caracterNoPermitido.source, "u").test(evento.data)) {
-          evento.preventDefault();
-        }
-      });
-
-      // Limpia lo que llegue pegado o autocompletado
-      campo.addEventListener("input", () => {
-        const limpio = campo.value.replace(caracterNoPermitido, "");
-        if (limpio !== campo.value) campo.value = limpio;
-      });
-    }
-
-    // Campos de correo: solo caracteres válidos en un email y una sola @
-    const caracterNoPermitidoCorreo = /[^A-Za-z0-9._%+\-@]/g;
-
-    for (const campo of formulario.querySelectorAll('input[type="email"]')) {
-      // Bloquea espacios, símbolos no válidos y una segunda @
-      campo.addEventListener("beforeinput", (evento) => {
-        if (!evento.data) return;
-        const tieneInvalidos = /[^A-Za-z0-9._%+\-@]/.test(evento.data);
-        const segundaArroba = evento.data.includes("@") && campo.value.includes("@");
-        if (tieneInvalidos || segundaArroba) evento.preventDefault();
-      });
-
-      // Limpia lo que llegue pegado o autocompletado
-      campo.addEventListener("input", () => {
-        let limpio = campo.value.replace(caracterNoPermitidoCorreo, "");
-        const primeraArroba = limpio.indexOf("@");
-        if (primeraArroba !== -1) {
-          limpio = limpio.slice(0, primeraArroba + 1) + limpio.slice(primeraArroba + 1).replaceAll("@", "");
-        }
-        if (limpio !== campo.value) campo.value = limpio;
-      });
-    }
-
-    // Quita espacios sobrantes en los campos de texto
-    const limpiarEspacios = (campo) => {
-      if (campo.type === "text" || campo.type === "email") {
-        campo.value = campo.value.trim().replace(/\s+/g, " ");
-      }
-    };
-
-    // Valida cada campo cuando el usuario sale de él o lo corrige
-    for (const campo of formulario.elements) {
-      if (!campo.name) continue;
-      campo.addEventListener("blur", () => {
-        limpiarEspacios(campo);
-        validarCampo(campo);
-      });
-      campo.addEventListener("change", () => validarCampo(campo));
-      campo.addEventListener("input", () => {
-        if (campo.getAttribute("aria-invalid") === "true") validarCampo(campo);
-      });
-    }
-
-    formulario.addEventListener("submit", (evento) => {
-      evento.preventDefault();
-      mensajeExito.classList.remove("visible");
-
-      const campos = [...formulario.elements].filter((campo) => campo.name);
-      campos.forEach(limpiarEspacios);
-      const invalidos = campos.filter((campo) => !validarCampo(campo));
-
-      if (invalidos.length > 0) {
-        invalidos[0].focus(); // Lleva al usuario al primer campo con error
-        return;
-      }
-
-      mensajeExito.classList.add("visible");
-      formulario.reset();
-      campos.forEach((campo) => campo.removeAttribute("aria-invalid"));
-    });
-  </script>
 </body>
 </html>

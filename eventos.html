@@ -9,78 +9,83 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
+  <a href="#contenido" class="saltar-enlace">Saltar al contenido principal</a>
 
-  <div class="barra-aviso">
-    🚚 <strong>Envío gratis</strong> en compras mayores a $50 en todo El Salvador
-  </div>
-
+  <!-- Encabezado del sitio: aviso, logo y menú de navegación -->
   <header class="encabezado">
-    <div class="contenedor">
-      <a href="index.html" class="logo">SIMAN<span>.</span></a>
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="menu-icono" aria-label="Abrir menú">☰</label>
-      <nav class="nav">
+    <p class="barra-aviso">
+      <span aria-hidden="true">🚚</span> <strong>Envío gratis</strong> en compras mayores a $50 en todo El Salvador
+    </p>
+    <div class="contenedor encabezado-contenido">
+      <a href="index.html" class="logo" aria-label="Siman, ir al inicio">SIMAN<span aria-hidden="true">.</span></a>
+      <button type="button" class="menu-boton" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+        <span aria-hidden="true">☰</span>
+      </button>
+      <nav class="nav" id="menu-principal" aria-label="Menú principal">
         <ul>
           <li><a href="index.html">Inicio</a></li>
           <li><a href="promociones.html">Promociones</a></li>
-          <li><a href="eventos.html" class="activo">Eventos</a></li>
+          <li><a href="eventos.html" aria-current="page">Eventos</a></li>
           <li><a href="index.html#suscripcion">Suscríbete</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero-interno">
+  <!-- Contenido principal -->
+  <main id="contenido">
+    <header class="hero-interno">
       <div class="contenedor">
         <h1>Eventos exclusivos</h1>
         <p>Vive experiencias únicas con descuentos especiales, actividades y sorpresas en nuestras tiendas.</p>
       </div>
-    </section>
+    </header>
 
-    <section class="seccion">
+    <section class="seccion" aria-labelledby="titulo-eventos">
       <div class="contenedor">
+        <h2 id="titulo-eventos" class="solo-lector">Próximos eventos</h2>
         <div class="lista-eventos">
           <article class="evento">
-            <img src="img/evento-noche.svg" alt="Noche Siman">
+            <img src="img/evento-noche.svg" alt="Noche Siman" width="400" height="260" loading="lazy">
             <div class="evento-info">
-              <span class="evento-fecha">📅 24 de octubre · 6:00 p.m. a 11:00 p.m.</span>
+              <p class="evento-fecha"><span aria-hidden="true">📅</span> <time datetime="2026-10-24T18:00">24 de octubre · 6:00 p.m.</time> a <time datetime="2026-10-24T23:00">11:00 p.m.</time></p>
               <h3>Noche Siman</h3>
               <p>Una noche con descuentos exclusivos en todas las tiendas del país. Precios especiales que solo durarán unas horas.</p>
               <ul>
-              <li>Hasta 50% de descuento en toda la tienda</li>
-              <li>Rifas y regalos para los primeros 100 clientes</li>
-              <li>Música en vivo y degustaciones</li>
+                <li>Hasta 50% de descuento en toda la tienda</li>
+                <li>Rifas y regalos para los primeros 100 clientes</li>
+                <li>Música en vivo y degustaciones</li>
               </ul>
               <a href="index.html#suscripcion" class="btn">Quiero asistir</a>
             </div>
           </article>
           <article class="evento">
-            <img src="img/evento-madre.svg" alt="Celebración especial para mamá">
+            <img src="img/evento-madre.svg" alt="Celebración especial para mamá" width="400" height="260" loading="lazy">
             <div class="evento-info">
-              <span class="evento-fecha">📅 8 al 10 de mayo</span>
+              <p class="evento-fecha"><span aria-hidden="true">📅</span> <time datetime="2027-05-08">8</time> al <time datetime="2027-05-10">10 de mayo</time></p>
               <h3>Festival del Día de la Madre</h3>
               <p>Encuentra el regalo perfecto para mamá con ofertas en fragancias, moda, joyería y hogar.</p>
               <ul>
-              <li>Envoltura de regalo gratis</li>
-              <li>Descuentos de 30% en fragancias</li>
-              <li>Talleres de maquillaje gratuitos</li>
+                <li>Envoltura de regalo gratis</li>
+                <li>Descuentos de 30% en fragancias</li>
+                <li>Talleres de maquillaje gratuitos</li>
               </ul>
               <a href="index.html#suscripcion" class="btn">Quiero asistir</a>
             </div>
           </article>
           <article class="evento">
-            <img src="img/evento-navidad.svg" alt="Árbol de Navidad">
+            <img src="img/evento-navidad.svg" alt="Árbol de Navidad" width="400" height="260" loading="lazy">
             <div class="evento-info">
-              <span class="evento-fecha">📅 1 al 24 de diciembre</span>
+              <p class="evento-fecha"><span aria-hidden="true">📅</span> <time datetime="2026-12-01">1</time> al <time datetime="2026-12-24">24 de diciembre</time></p>
               <h3>Navidad Siman</h3>
               <p>Celebra la temporada navideña con promociones diarias, decoración y la visita de Santa en tiendas seleccionadas.</p>
               <ul>
-              <li>Ofertas del día en diferentes categorías</li>
-              <li>Fotos gratis con Santa los fines de semana</li>
-              <li>Cuotas sin intereses en juguetes y tecnología</li>
+                <li>Ofertas del día en diferentes categorías</li>
+                <li>Fotos gratis con Santa los fines de semana</li>
+                <li>Cuotas sin intereses en juguetes y tecnología</li>
               </ul>
               <a href="index.html#suscripcion" class="btn">Quiero asistir</a>
             </div>
@@ -90,34 +95,35 @@
     </section>
   </main>
 
-
+  <!-- Pie de página -->
   <footer class="pie">
     <div class="contenedor">
       <div class="pie-grid">
-        <div>
-          <a href="index.html" class="logo">SIMAN<span>.</span></a>
+        <section aria-label="Acerca de Siman">
+          <a href="index.html" class="logo" aria-label="Siman, ir al inicio">SIMAN<span aria-hidden="true">.</span></a>
           <p>Tu tienda por departamentos en El Salvador. Encuentra moda, tecnología y hogar al mejor precio.</p>
-        </div>
-        <div>
-          <h4>Navegación</h4>
+        </section>
+        <nav aria-labelledby="titulo-pie-nav">
+          <h2 id="titulo-pie-nav">Navegación</h2>
           <ul>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="promociones.html">Promociones</a></li>
-            <li><a href="eventos.html">Eventos</a></li>
+            <li><a href="eventos.html" aria-current="page">Eventos</a></li>
           </ul>
-        </div>
-        <div>
-          <h4>Contacto</h4>
-          <ul>
-            <li>📍 San Salvador, El Salvador</li>
-            <li>📞 2250-0000</li>
-            <li>✉️ servicio@siman.com</li>
-          </ul>
-        </div>
+        </nav>
+        <section aria-labelledby="titulo-pie-contacto">
+          <h2 id="titulo-pie-contacto">Contacto</h2>
+          <address>
+            <ul>
+              <li><span aria-hidden="true">📍</span> San Salvador, El Salvador</li>
+              <li><span aria-hidden="true">📞</span> <a href="tel:+50322500000">2250&#8209;0000</a></li>
+              <li><span aria-hidden="true">✉️</span> <a href="mailto:servicio@siman.com">servicio@siman.com</a></li>
+            </ul>
+          </address>
+        </section>
       </div>
-      <p class="pie-copy">© 2026 Landing de promociones Siman — Proyecto académico.</p>
+      <p class="pie-copy"><small>© <time datetime="2026">2026</time> Landing de promociones Siman — Proyecto académico.</small></p>
     </div>
   </footer>
-
 </body>
 </html>

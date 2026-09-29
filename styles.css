@@ -44,7 +44,44 @@ body {
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
+}
+
+/* Foco visible para navegación con teclado */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--dorado);
+  outline-offset: 3px;
+}
+
+/* Texto solo para lectores de pantalla */
+.solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Enlace para saltar al contenido principal */
+.saltar-enlace {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 200;
+  background: var(--negro);
+  color: var(--blanco);
+  padding: 10px 16px;
+  border-radius: 0 0 8px 8px;
+}
+
+.saltar-enlace:focus {
+  top: 0;
 }
 
 a {
@@ -106,15 +143,15 @@ h1, h2, h3 {
   color: var(--dorado);
 }
 
-.menu-toggle {
+.menu-boton {
   display: none;
-}
-
-.menu-icono {
-  display: none;
+  background: none;
+  border: 0;
+  color: var(--negro);
   font-size: 1.8rem;
+  line-height: 1;
+  padding: 4px 8px;
   cursor: pointer;
-  user-select: none;
 }
 
 .nav ul {
@@ -131,7 +168,7 @@ h1, h2, h3 {
 }
 
 .nav a:hover,
-.nav a.activo {
+.nav a[aria-current="page"] {
   color: var(--rojo);
   border-color: var(--rojo);
 }
@@ -274,6 +311,7 @@ h1, h2, h3 {
 
 /* ---------- Beneficios ---------- */
 .beneficios {
+  list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -288,6 +326,7 @@ h1, h2, h3 {
 }
 
 .beneficio .icono {
+  display: block;
   font-size: 2rem;
   margin-bottom: 8px;
 }
@@ -611,10 +650,15 @@ h1, h2, h3 {
   margin-bottom: 10px;
 }
 
-.pie h4 {
+.pie h2 {
   color: var(--blanco);
   font-family: var(--fuente-texto);
+  font-size: 1rem;
   margin-bottom: 10px;
+}
+
+.pie address {
+  font-style: normal;
 }
 
 .pie ul {
@@ -686,7 +730,7 @@ h1, h2, h3 {
 
 /* Celulares */
 @media (max-width: 640px) {
-  .menu-icono {
+  .menu-boton {
     display: block;
   }
 
@@ -709,7 +753,7 @@ h1, h2, h3 {
     border-bottom: 1px solid #eee;
   }
 
-  .menu-toggle:checked ~ .nav {
+  .nav.abierto {
     max-height: 300px;
   }
 
@@ -736,5 +780,18 @@ h1, h2, h3 {
 
   .hero-botones {
     flex-direction: column;
+  }
+}
+
+/* Menos animaciones para quien lo prefiera */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
   }
 }
