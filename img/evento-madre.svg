@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="Día de la Madre">
+  <rect width="400" height="260" fill="#F7C6CE"/>
+  <circle cx="330" cy="50" r="80" fill="#C8102E" opacity=".35"/>
+  <circle cx="60" cy="230" r="60" fill="#C8102E" opacity=".25"/>
+  <path d="M200 200 C120 150 110 90 155 80 C180 75 195 95 200 110 C205 95 220 75 245 80 C290 90 280 150 200 200z" fill="#C8102E"/>
+</svg>

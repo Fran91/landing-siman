@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="Tecnología">
+  <rect width="400" height="260" fill="#1D1D1F"/>
+  <circle cx="330" cy="50" r="80" fill="#F2B705" opacity=".35"/>
+  <circle cx="60" cy="230" r="60" fill="#F2B705" opacity=".25"/>
+  <rect x="110" y="60" width="180" height="120" rx="10" fill="#F2B705"/><rect x="122" y="72" width="156" height="96" rx="4" fill="#1D1D1F"/><rect x="85" y="185" width="230" height="16" rx="8" fill="#F2B705"/>
+</svg>

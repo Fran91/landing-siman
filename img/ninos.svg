@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="Niños">
+  <rect width="400" height="260" fill="#3A6FD8"/>
+  <circle cx="330" cy="50" r="80" fill="#F2B705" opacity=".35"/>
+  <circle cx="60" cy="230" r="60" fill="#F2B705" opacity=".25"/>
+  <circle cx="200" cy="100" r="40" fill="#F2B705"/><rect x="150" y="145" width="100" height="80" rx="20" fill="#fff"/><circle cx="186" cy="95" r="5" fill="#1D1D1F"/><circle cx="214" cy="95" r="5" fill="#1D1D1F"/><path d="M185 115 q15 12 30 0" stroke="#1D1D1F" stroke-width="4" fill="none"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" role="img" aria-label="Bolsas de compras con etiquetas de descuento">
+  <rect width="600" height="480" rx="32" fill="#FFE9E3"/>
+  <circle cx="470" cy="110" r="70" fill="#F2B705"/>
+  <text x="470" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#1D1D1F">HASTA</text>
+  <text x="470" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="36" fill="#1D1D1F">50%</text>
+  <rect x="110" y="190" width="170" height="220" rx="14" fill="#C8102E"/>
+  <path d="M150 190 v-40 a45 45 0 0 1 90 0 v40" fill="none" stroke="#8E0B20" stroke-width="12"/>
+  <rect x="250" y="220" width="190" height="200" rx="14" fill="#1D1D1F"/>
+  <path d="M295 220 v-35 a50 50 0 0 1 100 0 v35" fill="none" stroke="#444" stroke-width="12"/>
+  <text x="345" y="330" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="34" fill="#F2B705">SALE</text>
+  <rect x="380" y="250" width="120" height="170" rx="12" fill="#F2B705"/>
+  <path d="M410 250 v-28 a30 30 0 0 1 60 0 v28" fill="none" stroke="#C99700" stroke-width="10"/>
+  <text x="195" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#fff">%</text>
+  <path d="M60 60 l12 24 26 4 -19 18 5 26 -24 -12 -24 12 5 -26 -19 -18 26 -4z" fill="#C8102E" opacity=".25"/>
+  <circle cx="540" cy="400" r="18" fill="#C8102E" opacity=".3"/>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="Hogar">
+  <rect width="400" height="260" fill="#F2B705"/>
+  <circle cx="330" cy="50" r="80" fill="#fff" opacity=".35"/>
+  <circle cx="60" cy="230" r="60" fill="#fff" opacity=".25"/>
+  <path d="M200 50 l110 90 h-30 v80 h-160 v-80 h-30z" fill="#fff"/><rect x="180" y="160" width="40" height="60" fill="#C8102E"/>
+</svg>

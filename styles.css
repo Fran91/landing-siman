@@ -1,0 +1,724 @@
+/* =========================================================
+   Landing Siman - Promociones El Salvador
+   Tipografías: Playfair Display (títulos) + Poppins (texto)
+   ========================================================= */
+
+/* ---------- Paleta de colores ---------- */
+:root {
+  --rojo: #C8102E;        /* color principal */
+  --rojo-oscuro: #8E0B20; /* hover / acentos */
+  --dorado: #F2B705;      /* destacados y ofertas */
+  --negro: #1D1D1F;       /* texto y fondos oscuros */
+  --crema: #FFF7F0;       /* fondo general */
+  --rosa: #FFE9E3;        /* fondos suaves */
+  --gris: #6B6B70;        /* texto secundario */
+  --blanco: #FFFFFF;
+
+  --fuente-titulos: "Playfair Display", Georgia, serif;
+  --fuente-texto: "Poppins", Arial, sans-serif;
+
+  --radio: 16px;
+  --sombra: 0 10px 30px rgba(29, 29, 31, 0.08);
+  --ancho-max: 1200px;
+}
+
+/* ---------- Reset básico ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fuente-texto);
+  color: var(--negro);
+  background: var(--crema);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.2;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- Barra superior ---------- */
+.barra-aviso {
+  background: var(--negro);
+  color: var(--blanco);
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 8px 20px;
+}
+
+.barra-aviso strong {
+  color: var(--dorado);
+}
+
+/* ---------- Encabezado y navegación ---------- */
+.encabezado {
+  background: var(--blanco);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.encabezado .contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--rojo);
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--dorado);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.menu-icono {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
+
+.nav a {
+  font-weight: 500;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav a:hover,
+.nav a.activo {
+  color: var(--rojo);
+  border-color: var(--rojo);
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--fuente-texto);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: 2px solid var(--rojo);
+  background: var(--rojo);
+  color: var(--blanco);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+  background: var(--rojo-oscuro);
+  border-color: var(--rojo-oscuro);
+  transform: translateY(-2px);
+}
+
+.btn-secundario {
+  background: transparent;
+  color: var(--rojo);
+}
+
+.btn-secundario:hover {
+  color: var(--blanco);
+}
+
+.btn-dorado {
+  background: var(--dorado);
+  border-color: var(--dorado);
+  color: var(--negro);
+}
+
+.btn-dorado:hover {
+  background: #d9a404;
+  border-color: #d9a404;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--crema) 0%, var(--rosa) 100%);
+  padding: 70px 0;
+}
+
+.hero .contenedor {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.etiqueta {
+  display: inline-block;
+  background: var(--dorado);
+  color: var(--negro);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 14px;
+  border-radius: 50px;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin-bottom: 18px;
+}
+
+.hero h1 em {
+  color: var(--rojo);
+}
+
+.hero p {
+  color: var(--gris);
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+  max-width: 520px;
+}
+
+.hero-botones {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Hero interno (páginas secundarias) */
+.hero-interno {
+  background: var(--rojo);
+  color: var(--blanco);
+  text-align: center;
+  padding: 60px 0;
+}
+
+.hero-interno h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin-bottom: 10px;
+}
+
+.hero-interno p {
+  opacity: 0.9;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ---------- Secciones ---------- */
+.seccion {
+  padding: 70px 0;
+}
+
+.seccion-oscura {
+  background: var(--negro);
+  color: var(--blanco);
+}
+
+.titulo-seccion {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.titulo-seccion h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  margin-bottom: 8px;
+}
+
+.titulo-seccion p {
+  color: var(--gris);
+}
+
+.seccion-oscura .titulo-seccion p {
+  color: #c9c9cf;
+}
+
+/* ---------- Beneficios ---------- */
+.beneficios {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.beneficio {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--sombra);
+}
+
+.beneficio .icono {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.beneficio h3 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.beneficio p {
+  font-size: 0.9rem;
+  color: var(--gris);
+}
+
+/* ---------- Tarjetas de promoción ---------- */
+.grid-promos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.promo {
+  background: var(--blanco);
+  color: var(--negro);
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.promo:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(29, 29, 31, 0.14);
+}
+
+.promo-imagen {
+  position: relative;
+}
+
+.promo-imagen img {
+  width: 100%;
+  aspect-ratio: 400 / 260;
+  object-fit: cover;
+}
+
+.descuento {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--dorado);
+  color: var(--negro);
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+}
+
+.promo-cuerpo {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.promo-cuerpo h3 {
+  font-size: 1.35rem;
+}
+
+.promo-cuerpo p {
+  color: var(--gris);
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.precios {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.precio-antes {
+  text-decoration: line-through;
+  color: var(--gris);
+  font-size: 0.9rem;
+}
+
+.precio-ahora {
+  color: var(--rojo);
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.vigencia {
+  font-size: 0.8rem;
+  color: var(--gris);
+}
+
+.centrado {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Filtros de categoría */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.filtros a {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid var(--rojo);
+  color: var(--rojo);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.filtros a:hover {
+  background: var(--rojo);
+  color: var(--blanco);
+}
+
+/* ---------- Eventos ---------- */
+.lista-eventos {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.evento {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  background: var(--blanco);
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+
+.evento img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.evento-info {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.evento-fecha {
+  color: var(--rojo);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.evento-info h3 {
+  font-size: 1.6rem;
+}
+
+.evento-info ul {
+  list-style: none;
+  color: var(--gris);
+  font-size: 0.95rem;
+}
+
+.evento-info li::before {
+  content: "✔ ";
+  color: var(--rojo);
+}
+
+/* Cuenta regresiva / banner */
+.banner {
+  background: linear-gradient(120deg, var(--rojo) 0%, var(--rojo-oscuro) 100%);
+  color: var(--blanco);
+  border-radius: var(--radio);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.banner h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.banner p {
+  opacity: 0.9;
+}
+
+/* ---------- Formulario de suscripción ---------- */
+.suscripcion {
+  background: var(--rosa);
+}
+
+.suscripcion .contenedor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.suscripcion h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  margin-bottom: 12px;
+}
+
+.suscripcion p {
+  color: var(--gris);
+}
+
+.formulario {
+  background: var(--blanco);
+  padding: 32px;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.campo input,
+.campo select {
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: var(--crema);
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid var(--rojo);
+  border-color: var(--rojo);
+}
+
+.check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: var(--gris);
+}
+
+.check input {
+  margin-top: 4px;
+  accent-color: var(--rojo);
+}
+
+.mensaje-exito {
+  display: none;
+  background: #E6F6EF;
+  color: #0E7C66;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.mensaje-exito.visible {
+  display: block;
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+  background: var(--negro);
+  color: #c9c9cf;
+  padding: 50px 0 20px;
+  font-size: 0.9rem;
+}
+
+.pie-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.pie .logo {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.pie h4 {
+  color: var(--blanco);
+  font-family: var(--fuente-texto);
+  margin-bottom: 10px;
+}
+
+.pie ul {
+  list-style: none;
+}
+
+.pie li {
+  margin-bottom: 6px;
+}
+
+.pie a:hover {
+  color: var(--dorado);
+}
+
+.pie-copy {
+  border-top: 1px solid #333;
+  padding-top: 18px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+/* Tablets */
+@media (max-width: 900px) {
+  .hero .contenedor,
+  .suscripcion .contenedor {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-botones {
+    justify-content: center;
+  }
+
+  .hero-imagen {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .beneficios {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-promos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .evento {
+    grid-template-columns: 1fr;
+  }
+
+  .evento img {
+    aspect-ratio: 400 / 260;
+  }
+
+  .banner {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* Celulares */
+@media (max-width: 640px) {
+  .menu-icono {
+    display: block;
+  }
+
+  .nav {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 10px;
+  }
+
+  .nav a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .menu-toggle:checked ~ .nav {
+    max-height: 300px;
+  }
+
+  .hero,
+  .seccion {
+    padding: 50px 0;
+  }
+
+  .beneficios,
+  .grid-promos,
+  .pie-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .formulario,
+  .banner {
+    padding: 24px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-botones {
+    flex-direction: column;
+  }
+}
