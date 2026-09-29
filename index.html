@@ -161,30 +161,43 @@
           <h2>Suscríbete y recibe ofertas antes que nadie</h2>
           <p>Recibe en tu correo promociones exclusivas, cupones de descuento y la fecha de nuestros próximos eventos.</p>
         </div>
-        <form class="formulario" id="form-suscripcion">
+        <form class="formulario" id="form-suscripcion" novalidate>
           <div class="campo">
             <label for="nombre">Nombre completo</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Ej. María López" required>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. María López"
+                   autocomplete="name" required minlength="3" maxlength="60"
+                   pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+( [A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)+"
+                   aria-describedby="error-nombre">
+            <small class="error" id="error-nombre" aria-live="polite"></small>
           </div>
           <div class="campo">
             <label for="correo">Correo electrónico</label>
-            <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+            <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com"
+                   autocomplete="email" required maxlength="100"
+                   pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}"
+                   aria-describedby="error-correo">
+            <small class="error" id="error-correo" aria-live="polite"></small>
           </div>
           <div class="campo">
             <label for="interes">¿Qué te interesa más?</label>
-            <select id="interes" name="interes">
+            <select id="interes" name="interes" required aria-describedby="error-interes">
+              <option value="" disabled selected>Selecciona una opción</option>
               <option value="moda">Moda</option>
               <option value="tecnologia">Tecnología</option>
               <option value="hogar">Hogar</option>
               <option value="belleza">Belleza</option>
             </select>
+            <small class="error" id="error-interes" aria-live="polite"></small>
           </div>
-          <label class="check">
-            <input type="checkbox" name="acepto" required>
-            Acepto recibir correos con promociones de Siman.
-          </label>
+          <div class="campo">
+            <label class="check">
+              <input type="checkbox" id="acepto" name="acepto" required aria-describedby="error-acepto">
+              Acepto recibir correos con promociones de Siman.
+            </label>
+            <small class="error" id="error-acepto" aria-live="polite"></small>
+          </div>
           <button type="submit" class="btn">Suscribirme</button>
-          <p class="mensaje-exito" id="mensaje-exito">¡Gracias por suscribirte! Pronto recibirás nuestras ofertas.</p>
+          <p class="mensaje-exito" id="mensaje-exito" role="status" aria-live="polite">¡Gracias por suscribirte! Pronto recibirás nuestras ofertas.</p>
         </form>
       </div>
     </section>
@@ -219,11 +232,81 @@
   </footer>
 
   <script>
-    // Muestra un mensaje de confirmación al enviar el formulario
-    document.getElementById("form-suscripcion").addEventListener("submit", function (e) {
-      e.preventDefault();
-      document.getElementById("mensaje-exito").classList.add("visible");
-      this.reset();
+    // Validación del formulario de suscripción con la API de validación nativa de HTML5
+    const formulario = document.querySelector("#form-suscripcion");
+    const mensajeExito = document.querySelector("#mensaje-exito");
+
+    // Mensajes de error en español para cada campo
+    const mensajes = {
+      nombre: {
+        valueMissing: "Escribe tu nombre completo.",
+        tooShort: "El nombre debe tener al menos 3 caracteres.",
+        patternMismatch: "Escribe nombre y apellido, solo con letras."
+      },
+      correo: {
+        valueMissing: "Escribe tu correo electrónico.",
+        typeMismatch: "Escribe un correo válido, por ejemplo: nombre@correo.com.",
+        patternMismatch: "Escribe un correo válido, por ejemplo: nombre@correo.com."
+      },
+      interes: {
+        valueMissing: "Selecciona una categoría."
+      },
+      acepto: {
+        valueMissing: "Debes aceptar para poder suscribirte."
+      }
+    };
+
+    // Devuelve el mensaje del primer error encontrado en el campo
+    const obtenerError = (campo) => {
+      const errores = mensajes[campo.name] ?? {};
+      const tipo = Object.keys(errores).find((clave) => campo.validity[clave]);
+      return tipo ? errores[tipo] : "";
+    };
+
+    // Valida un campo y muestra u oculta su mensaje de error
+    const validarCampo = (campo) => {
+      const error = obtenerError(campo);
+      campo.setAttribute("aria-invalid", error ? "true" : "false");
+      document.querySelector(`#error-${campo.name}`).textContent = error;
+      return !error;
+    };
+
+    // Quita espacios sobrantes en los campos de texto
+    const limpiarEspacios = (campo) => {
+      if (campo.type === "text" || campo.type === "email") {
+        campo.value = campo.value.trim().replace(/\s+/g, " ");
+      }
+    };
+
+    // Valida cada campo cuando el usuario sale de él o lo corrige
+    for (const campo of formulario.elements) {
+      if (!campo.name) continue;
+      campo.addEventListener("blur", () => {
+        limpiarEspacios(campo);
+        validarCampo(campo);
+      });
+      campo.addEventListener("change", () => validarCampo(campo));
+      campo.addEventListener("input", () => {
+        if (campo.getAttribute("aria-invalid") === "true") validarCampo(campo);
+      });
+    }
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      mensajeExito.classList.remove("visible");
+
+      const campos = [...formulario.elements].filter((campo) => campo.name);
+      campos.forEach(limpiarEspacios);
+      const invalidos = campos.filter((campo) => !validarCampo(campo));
+
+      if (invalidos.length > 0) {
+        invalidos[0].focus(); // Lleva al usuario al primer campo con error
+        return;
+      }
+
+      mensajeExito.classList.add("visible");
+      formulario.reset();
+      campos.forEach((campo) => campo.removeAttribute("aria-invalid"));
     });
   </script>
 </body>

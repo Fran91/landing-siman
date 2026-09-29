@@ -561,6 +561,22 @@ h1, h2, h3 {
   accent-color: var(--rojo);
 }
 
+.campo input[aria-invalid="true"],
+.campo select[aria-invalid="true"] {
+  border-color: var(--rojo);
+  background: #FFF1F2;
+}
+
+.error {
+  color: var(--rojo);
+  font-size: 0.8rem;
+  min-height: 1em;
+}
+
+.error:empty {
+  display: none;
+}
+
 .mensaje-exito {
   display: none;
   background: #E6F6EF;
