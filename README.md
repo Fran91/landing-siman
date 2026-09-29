@@ -19,6 +19,8 @@ Proyecto final: landing page para promocionar descuentos y eventos exclusivos de
   | Crema | `#FFF7F0` | Fondo general |
   | Rosa claro | `#FFE9E3` | Fondos suaves |
 - **Responsive:** CSS Grid/Flexbox con puntos de quiebre en 900px (tablet) y 640px (celular), menú hamburguesa en móvil.
+- **HTML semántico:** header, nav, main, section, article, footer y atributos de accesibilidad.
+- **JavaScript:** en js/script.js, cargado con defer (menú en celular y validación del formulario).
 - **Imágenes:** ilustraciones SVG en la carpeta `img/`.
 
 ## Estructura
@@ -28,6 +30,8 @@ landing-siman/
 ├── promociones.html
 ├── eventos.html
 ├── styles.css
+├── js/
+│   └── script.js
 └── img/
 ```
 
