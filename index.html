@@ -174,7 +174,7 @@
             <label for="correo">Correo electrónico</label>
             <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com"
                    autocomplete="email" required maxlength="100"
-                   pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}"
+                   pattern="[A-Za-z0-9_%+\-]+(\.[A-Za-z0-9_%+\-]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,}"
                    aria-describedby="error-correo">
             <small class="error" id="error-correo" aria-live="polite"></small>
           </div>
@@ -285,6 +285,29 @@
       // Limpia lo que llegue pegado o autocompletado
       campo.addEventListener("input", () => {
         const limpio = campo.value.replace(caracterNoPermitido, "");
+        if (limpio !== campo.value) campo.value = limpio;
+      });
+    }
+
+    // Campos de correo: solo caracteres válidos en un email y una sola @
+    const caracterNoPermitidoCorreo = /[^A-Za-z0-9._%+\-@]/g;
+
+    for (const campo of formulario.querySelectorAll('input[type="email"]')) {
+      // Bloquea espacios, símbolos no válidos y una segunda @
+      campo.addEventListener("beforeinput", (evento) => {
+        if (!evento.data) return;
+        const tieneInvalidos = /[^A-Za-z0-9._%+\-@]/.test(evento.data);
+        const segundaArroba = evento.data.includes("@") && campo.value.includes("@");
+        if (tieneInvalidos || segundaArroba) evento.preventDefault();
+      });
+
+      // Limpia lo que llegue pegado o autocompletado
+      campo.addEventListener("input", () => {
+        let limpio = campo.value.replace(caracterNoPermitidoCorreo, "");
+        const primeraArroba = limpio.indexOf("@");
+        if (primeraArroba !== -1) {
+          limpio = limpio.slice(0, primeraArroba + 1) + limpio.slice(primeraArroba + 1).replaceAll("@", "");
+        }
         if (limpio !== campo.value) campo.value = limpio;
       });
     }
