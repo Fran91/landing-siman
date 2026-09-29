@@ -3,26 +3,41 @@
    Tipografías: Playfair Display (títulos) + Poppins (texto)
    ========================================================= */
 
-/* ---------- Paleta de colores ---------- */
+/* ---------- Variables: paleta y valores reutilizables ---------- */
 :root {
-  --rojo: #C8102E;        /* color principal */
-  --rojo-oscuro: #8E0B20; /* hover / acentos */
-  --dorado: #F2B705;      /* destacados y ofertas */
-  --negro: #1D1D1F;       /* texto y fondos oscuros */
-  --crema: #FFF7F0;       /* fondo general */
-  --rosa: #FFE9E3;        /* fondos suaves */
-  --gris: #6B6B70;        /* texto secundario */
+  /* Paleta de colores */
+  --rojo: #C8102E;          /* color principal */
+  --rojo-oscuro: #8E0B20;   /* hover / degradados */
+  --dorado: #F2B705;        /* destacados y ofertas */
+  --dorado-oscuro: #D9A404; /* hover del botón dorado */
+  --negro: #1D1D1F;         /* texto y fondos oscuros */
+  --crema: #FFF7F0;         /* fondo general */
+  --rosa: #FFE9E3;          /* fondos suaves */
+  --gris: #6B6B70;          /* texto secundario */
+  --gris-claro: #C9C9CF;    /* texto sobre fondos oscuros */
+  --borde: #DDDDDD;         /* bordes de campos */
+  --borde-oscuro: #333333;  /* líneas sobre fondos oscuros */
   --blanco: #FFFFFF;
+  --error-fondo: #FFF1F2;
+  --exito: #0E7C66;
+  --exito-fondo: #E6F6EF;
 
+  /* Tipografías */
   --fuente-titulos: "Playfair Display", Georgia, serif;
   --fuente-texto: "Poppins", Arial, sans-serif;
 
+  /* Formas, sombras y medidas */
   --radio: 16px;
-  --sombra: 0 10px 30px rgba(29, 29, 31, 0.08);
+  --radio-sm: 10px;
+  --radio-pildora: 50px;
+  --sombra: 0 10px 30px rgb(29 29 31 / 0.08);
+  --sombra-fuerte: 0 16px 40px rgb(29 29 31 / 0.14);
+  --transicion: 0.2s ease;
   --ancho-max: 1200px;
+  --espacio-seccion: 70px;
 }
 
-/* ---------- Reset básico ---------- */
+/* ---------- Base ---------- */
 *,
 *::before,
 *::after {
@@ -48,11 +63,32 @@ img {
   display: block;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.2;
+}
+
 /* Foco visible para navegación con teclado */
-a:focus-visible,
-button:focus-visible {
+:focus-visible {
   outline: 3px solid var(--dorado);
   outline-offset: 3px;
+}
+
+/* ---------- Utilidades reutilizables ---------- */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  padding-inline: 20px;
 }
 
 /* Texto solo para lectores de pantalla */
@@ -60,12 +96,9 @@ button:focus-visible {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
-  margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
-  border: 0;
 }
 
 /* Enlace para saltar al contenido principal */
@@ -84,24 +117,49 @@ button:focus-visible {
   top: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* Iconos junto a un texto */
+.icono-texto {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+  margin-right: 4px;
 }
 
-h1, h2, h3 {
-  font-family: var(--fuente-titulos);
-  line-height: 1.2;
+/* Tarjetas: estilo común de beneficios, promociones, eventos y formulario */
+.beneficio,
+.promo,
+.evento,
+.formulario {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
 }
 
-.contenedor {
-  width: 100%;
-  max-width: var(--ancho-max);
-  margin: 0 auto;
-  padding: 0 20px;
+.promo,
+.evento {
+  overflow: hidden;
 }
 
-/* ---------- Barra superior ---------- */
+/* Textos secundarios en gris */
+.titulo-seccion p,
+.hero-texto > p:not(.etiqueta),
+.beneficio p,
+.promo-cuerpo p,
+.suscripcion header > p:not(.etiqueta),
+.evento-info ul,
+.check {
+  color: var(--gris);
+}
+
+/* Títulos de sección */
+.titulo-seccion h2,
+.suscripcion h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  margin-bottom: 10px;
+}
+
+/* ---------- Encabezado y navegación ---------- */
 .barra-aviso {
   background: var(--negro);
   color: var(--blanco);
@@ -114,21 +172,20 @@ h1, h2, h3 {
   color: var(--dorado);
 }
 
-/* ---------- Encabezado y navegación ---------- */
 .encabezado {
   background: var(--blanco);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.05);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-.encabezado .contenedor {
+.encabezado-contenido {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 70px;
   flex-wrap: wrap;
+  min-height: 70px;
 }
 
 .logo {
@@ -143,37 +200,24 @@ h1, h2, h3 {
   color: var(--dorado);
 }
 
-/* Iconos junto a un texto */
-.icono-texto {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  vertical-align: -3px;
-  margin-right: 4px;
-}
-
 .menu-boton {
   display: none;
   background: none;
   border: 0;
-  color: var(--negro);
-  font-size: 1.8rem;
-  line-height: 1;
   padding: 4px 8px;
   cursor: pointer;
 }
 
 .nav ul {
-  list-style: none;
   display: flex;
   gap: 28px;
 }
 
 .nav a {
   font-weight: 500;
-  padding: 6px 0;
+  padding-block: 6px;
   border-bottom: 2px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color var(--transicion), border-color var(--transicion);
 }
 
 .nav a:hover,
@@ -189,12 +233,12 @@ h1, h2, h3 {
   font-weight: 600;
   font-size: 1rem;
   padding: 12px 28px;
-  border-radius: 50px;
+  border-radius: var(--radio-pildora);
   border: 2px solid var(--rojo);
   background: var(--rojo);
   color: var(--blanco);
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: background var(--transicion), color var(--transicion), transform var(--transicion);
 }
 
 .btn:hover {
@@ -219,14 +263,32 @@ h1, h2, h3 {
 }
 
 .btn-dorado:hover {
-  background: #d9a404;
-  border-color: #d9a404;
+  background: var(--dorado-oscuro);
+  border-color: var(--dorado-oscuro);
+}
+
+/* Etiquetas en forma de píldora */
+.etiqueta,
+.descuento {
+  display: inline-block;
+  background: var(--dorado);
+  color: var(--negro);
+  border-radius: var(--radio-pildora);
+}
+
+.etiqueta {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 14px;
+  margin-bottom: 16px;
 }
 
 /* ---------- Hero ---------- */
 .hero {
-  background: linear-gradient(135deg, var(--crema) 0%, var(--rosa) 100%);
-  padding: 70px 0;
+  background: linear-gradient(135deg, var(--crema), var(--rosa));
+  padding-block: var(--espacio-seccion);
 }
 
 .hero .contenedor {
@@ -234,19 +296,6 @@ h1, h2, h3 {
   grid-template-columns: 1.1fr 1fr;
   align-items: center;
   gap: 40px;
-}
-
-.etiqueta {
-  display: inline-block;
-  background: var(--dorado);
-  color: var(--negro);
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 4px 14px;
-  border-radius: 50px;
-  margin-bottom: 16px;
 }
 
 .hero h1 {
@@ -258,8 +307,7 @@ h1, h2, h3 {
   color: var(--rojo);
 }
 
-.hero p {
-  color: var(--gris);
+.hero-texto > p:not(.etiqueta) {
   font-size: 1.1rem;
   margin-bottom: 28px;
   max-width: 520px;
@@ -267,16 +315,16 @@ h1, h2, h3 {
 
 .hero-botones {
   display: flex;
-  gap: 14px;
   flex-wrap: wrap;
+  gap: 14px;
 }
 
-/* Hero interno (páginas secundarias) */
+/* Hero de páginas secundarias */
 .hero-interno {
   background: var(--rojo);
   color: var(--blanco);
   text-align: center;
-  padding: 60px 0;
+  padding-block: 60px;
 }
 
 .hero-interno h1 {
@@ -287,12 +335,12 @@ h1, h2, h3 {
 .hero-interno p {
   opacity: 0.9;
   max-width: 620px;
-  margin: 0 auto;
+  margin-inline: auto;
 }
 
 /* ---------- Secciones ---------- */
 .seccion {
-  padding: 70px 0;
+  padding-block: var(--espacio-seccion);
 }
 
 .seccion-oscura {
@@ -305,33 +353,25 @@ h1, h2, h3 {
   margin-bottom: 40px;
 }
 
-.titulo-seccion h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-  margin-bottom: 8px;
-}
-
-.titulo-seccion p {
-  color: var(--gris);
-}
-
 .seccion-oscura .titulo-seccion p {
-  color: #c9c9cf;
+  color: var(--gris-claro);
+}
+
+.centrado {
+  text-align: center;
+  margin-top: 40px;
 }
 
 /* ---------- Beneficios ---------- */
 .beneficios {
-  list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
 .beneficio {
-  background: var(--blanco);
-  border-radius: var(--radio);
   padding: 24px;
   text-align: center;
-  box-shadow: var(--sombra);
 }
 
 .beneficio .icono {
@@ -347,37 +387,34 @@ h1, h2, h3 {
 
 .beneficio p {
   font-size: 0.9rem;
-  color: var(--gris);
 }
 
 /* ---------- Tarjetas de promoción ---------- */
+/* Se adapta sola: 3, 2 o 1 columna según el espacio disponible */
 .grid-promos {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 28px;
 }
 
 .promo {
-  background: var(--blanco);
   color: var(--negro);
-  border-radius: var(--radio);
-  overflow: hidden;
-  box-shadow: var(--sombra);
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s, box-shadow 0.25s;
+  transition: transform var(--transicion), box-shadow var(--transicion);
 }
 
 .promo:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(29, 29, 31, 0.14);
+  box-shadow: var(--sombra-fuerte);
 }
 
 .promo-imagen {
   position: relative;
 }
 
-.promo-imagen img {
+.promo-imagen img,
+.evento > img {
   width: 100%;
   aspect-ratio: 400 / 260;
   object-fit: cover;
@@ -387,20 +424,17 @@ h1, h2, h3 {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: var(--dorado);
-  color: var(--negro);
   font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 50px;
   font-size: 0.95rem;
+  padding: 6px 14px;
 }
 
 .promo-cuerpo {
-  padding: 22px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex: 1;
+  padding: 22px;
 }
 
 .promo-cuerpo h3 {
@@ -408,37 +442,29 @@ h1, h2, h3 {
 }
 
 .promo-cuerpo p {
-  color: var(--gris);
   font-size: 0.95rem;
   flex: 1;
 }
 
-.precios {
+.promo-cuerpo .precios {
   display: flex;
   align-items: baseline;
   gap: 10px;
+  flex: 0;
 }
 
 .precio-antes {
-  text-decoration: line-through;
-  color: var(--gris);
   font-size: 0.9rem;
 }
 
 .precio-ahora {
   color: var(--rojo);
-  font-weight: 700;
   font-size: 1.4rem;
 }
 
-.vigencia {
+.promo-cuerpo .vigencia {
   font-size: 0.8rem;
-  color: var(--gris);
-}
-
-.centrado {
-  text-align: center;
-  margin-top: 40px;
+  flex: 0;
 }
 
 /* Filtros de categoría */
@@ -452,12 +478,12 @@ h1, h2, h3 {
 
 .filtros a {
   padding: 8px 20px;
-  border-radius: 50px;
+  border-radius: var(--radio-pildora);
   border: 1px solid var(--rojo);
   color: var(--rojo);
   font-size: 0.9rem;
   font-weight: 500;
-  transition: background 0.2s, color 0.2s;
+  transition: background var(--transicion), color var(--transicion);
 }
 
 .filtros a:hover {
@@ -467,31 +493,24 @@ h1, h2, h3 {
 
 /* ---------- Eventos ---------- */
 .lista-eventos {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 28px;
 }
 
 .evento {
   display: grid;
   grid-template-columns: 340px 1fr;
-  background: var(--blanco);
-  border-radius: var(--radio);
-  overflow: hidden;
-  box-shadow: var(--sombra);
 }
 
-.evento img {
-  width: 100%;
+.evento > img {
   height: 100%;
-  object-fit: cover;
 }
 
 .evento-info {
-  padding: 28px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 28px;
 }
 
 .evento-fecha {
@@ -502,32 +521,34 @@ h1, h2, h3 {
   letter-spacing: 1px;
 }
 
+.evento-info .btn {
+  align-self: flex-start;
+}
+
 .evento-info h3 {
   font-size: 1.6rem;
 }
 
 .evento-info ul {
-  list-style: none;
-  color: var(--gris);
   font-size: 0.95rem;
 }
 
 .evento-info li {
   padding-left: 26px;
-  background: url("img/iconos/check.svg") no-repeat left 0.3em / 16px 16px;
+  background: url("img/iconos/check.svg") no-repeat left 0.3em / 16px;
 }
 
-/* Cuenta regresiva / banner */
+/* ---------- Banner ---------- */
 .banner {
-  background: linear-gradient(120deg, var(--rojo) 0%, var(--rojo-oscuro) 100%);
-  color: var(--blanco);
-  border-radius: var(--radio);
-  padding: 40px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  flex-wrap: wrap;
+  padding: 40px;
+  border-radius: var(--radio);
+  background: linear-gradient(120deg, var(--rojo), var(--rojo-oscuro));
+  color: var(--blanco);
 }
 
 .banner h2 {
@@ -546,27 +567,15 @@ h1, h2, h3 {
 .suscripcion .contenedor {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
   align-items: center;
-}
-
-.suscripcion h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-  margin-bottom: 12px;
-}
-
-.suscripcion p {
-  color: var(--gris);
+  gap: 40px;
 }
 
 .formulario {
-  background: var(--blanco);
-  padding: 32px;
-  border-radius: var(--radio);
-  box-shadow: var(--sombra);
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 32px;
 }
 
 .campo {
@@ -582,26 +591,30 @@ h1, h2, h3 {
 
 .campo input,
 .campo select {
-  font-family: var(--fuente-texto);
-  font-size: 1rem;
+  font: 1rem var(--fuente-texto);
   padding: 12px 14px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-sm);
   background: var(--crema);
 }
 
-.campo input:focus,
-.campo select:focus {
+.campo input:focus-visible,
+.campo select:focus-visible {
   outline: 2px solid var(--rojo);
+  outline-offset: 0;
   border-color: var(--rojo);
+}
+
+.campo [aria-invalid="true"] {
+  border-color: var(--rojo);
+  background: var(--error-fondo);
 }
 
 .check {
   display: flex;
-  gap: 10px;
   align-items: flex-start;
+  gap: 10px;
   font-size: 0.85rem;
-  color: var(--gris);
 }
 
 .check input {
@@ -609,16 +622,9 @@ h1, h2, h3 {
   accent-color: var(--rojo);
 }
 
-.campo input[aria-invalid="true"],
-.campo select[aria-invalid="true"] {
-  border-color: var(--rojo);
-  background: #FFF1F2;
-}
-
 .error {
   color: var(--rojo);
   font-size: 0.8rem;
-  min-height: 1em;
 }
 
 .error:empty {
@@ -626,23 +632,18 @@ h1, h2, h3 {
 }
 
 .mensaje-exito {
-  display: none;
-  background: #E6F6EF;
-  color: #0E7C66;
+  background: var(--exito-fondo);
+  color: var(--exito);
   padding: 12px;
-  border-radius: 10px;
+  border-radius: var(--radio-sm);
   font-weight: 500;
   text-align: center;
-}
-
-.mensaje-exito.visible {
-  display: block;
 }
 
 /* ---------- Pie de página ---------- */
 .pie {
   background: var(--negro);
-  color: #c9c9cf;
+  color: var(--gris-claro);
   padding: 50px 0 20px;
   font-size: 0.9rem;
 }
@@ -670,10 +671,6 @@ h1, h2, h3 {
   font-style: normal;
 }
 
-.pie ul {
-  list-style: none;
-}
-
 .pie li {
   margin-bottom: 6px;
 }
@@ -683,7 +680,7 @@ h1, h2, h3 {
 }
 
 .pie-copy {
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--borde-oscuro);
   padding-top: 18px;
   text-align: center;
   font-size: 0.8rem;
@@ -696,14 +693,21 @@ h1, h2, h3 {
 /* Tablets */
 @media (max-width: 900px) {
   .hero .contenedor,
-  .suscripcion .contenedor {
+  .suscripcion .contenedor,
+  .evento {
     grid-template-columns: 1fr;
-    text-align: center;
   }
 
-  .hero p {
-    margin-left: auto;
-    margin-right: auto;
+  .hero .contenedor,
+  .suscripcion .contenedor,
+  .banner {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .hero-texto > p:not(.etiqueta),
+  .hero-imagen {
+    margin-inline: auto;
   }
 
   .hero-botones {
@@ -712,33 +716,19 @@ h1, h2, h3 {
 
   .hero-imagen {
     max-width: 440px;
-    margin: 0 auto;
   }
 
   .beneficios {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .grid-promos {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .evento {
-    grid-template-columns: 1fr;
-  }
-
-  .evento img {
-    aspect-ratio: 400 / 260;
-  }
-
-  .banner {
-    text-align: center;
-    justify-content: center;
-  }
 }
 
 /* Celulares */
 @media (max-width: 640px) {
+  :root {
+    --espacio-seccion: 50px;
+  }
+
   .menu-boton {
     display: block;
   }
@@ -750,6 +740,10 @@ h1, h2, h3 {
     transition: max-height 0.3s ease;
   }
 
+  .nav.abierto {
+    max-height: 300px;
+  }
+
   .nav ul {
     flex-direction: column;
     gap: 0;
@@ -758,23 +752,17 @@ h1, h2, h3 {
 
   .nav a {
     display: block;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-  }
-
-  .nav.abierto {
-    max-height: 300px;
-  }
-
-  .hero,
-  .seccion {
-    padding: 50px 0;
+    padding-block: 12px;
+    border-bottom: 1px solid var(--borde);
   }
 
   .beneficios,
-  .grid-promos,
   .pie-grid {
     grid-template-columns: 1fr;
+  }
+
+  .evento > img {
+    height: auto;
   }
 
   .formulario,
@@ -782,13 +770,13 @@ h1, h2, h3 {
     padding: 24px;
   }
 
+  .hero-botones {
+    flex-direction: column;
+  }
+
   .btn {
     width: 100%;
     text-align: center;
-  }
-
-  .hero-botones {
-    flex-direction: column;
   }
 }
 
