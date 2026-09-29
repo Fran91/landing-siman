@@ -143,6 +143,15 @@ h1, h2, h3 {
   color: var(--dorado);
 }
 
+/* Iconos junto a un texto */
+.icono-texto {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+  margin-right: 4px;
+}
+
 .menu-boton {
   display: none;
   background: none;
@@ -326,9 +335,9 @@ h1, h2, h3 {
 }
 
 .beneficio .icono {
-  display: block;
-  font-size: 2rem;
-  margin-bottom: 8px;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 8px;
 }
 
 .beneficio h3 {
@@ -503,9 +512,9 @@ h1, h2, h3 {
   font-size: 0.95rem;
 }
 
-.evento-info li::before {
-  content: "✔ ";
-  color: var(--rojo);
+.evento-info li {
+  padding-left: 26px;
+  background: url("img/iconos/check.svg") no-repeat left 0.3em / 16px 16px;
 }
 
 /* Cuenta regresiva / banner */

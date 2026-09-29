@@ -21,7 +21,7 @@ Proyecto final: landing page para promocionar descuentos y eventos exclusivos de
 - **Responsive:** CSS Grid/Flexbox con puntos de quiebre en 900px (tablet) y 640px (celular), menú hamburguesa en móvil.
 - **HTML semántico:** header, nav, main, section, article, footer y atributos de accesibilidad.
 - **JavaScript:** en js/script.js, cargado con defer (menú en celular y validación del formulario).
-- **Imágenes:** ilustraciones SVG en la carpeta `img/`.
+- **Imágenes:** ilustraciones SVG en la carpeta `img/`; iconos y favicon en `img/iconos/`.
 
 ## Estructura
 ```
@@ -33,6 +33,7 @@ landing-siman/
 ├── js/
 │   └── script.js
 └── img/
+    └── iconos/   (iconos SVG y favicon)
 ```
 
 ## Cómo verlo
