@@ -164,7 +164,7 @@
         <form class="formulario" id="form-suscripcion" novalidate>
           <div class="campo">
             <label for="nombre">Nombre completo</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Ej. María López"
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. María López" data-solo-texto
                    autocomplete="name" required minlength="3" maxlength="60"
                    pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+( [A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)+"
                    aria-describedby="error-nombre">
@@ -270,6 +270,24 @@
       document.querySelector(`#error-${campo.name}`).textContent = error;
       return !error;
     };
+
+    // Campos que solo aceptan letras y espacios (marcados con data-solo-texto)
+    const caracterNoPermitido = /[^\p{L}\s]/gu;
+
+    for (const campo of formulario.querySelectorAll("[data-solo-texto]")) {
+      // Bloquea números y símbolos antes de que se escriban
+      campo.addEventListener("beforeinput", (evento) => {
+        if (evento.data && new RegExp(caracterNoPermitido.source, "u").test(evento.data)) {
+          evento.preventDefault();
+        }
+      });
+
+      // Limpia lo que llegue pegado o autocompletado
+      campo.addEventListener("input", () => {
+        const limpio = campo.value.replace(caracterNoPermitido, "");
+        if (limpio !== campo.value) campo.value = limpio;
+      });
+    }
 
     // Quita espacios sobrantes en los campos de texto
     const limpiarEspacios = (campo) => {
